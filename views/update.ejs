@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Post</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="main w-full h-screen bg-zinc-900 overflow-x-hidden">
+        <div class="inline-block w-full m-2">
+            <button class="btn p-2 rounded-lg font-bold text-lg bg-blue-500 text-gray-200 float-left ml-4 cursor-pointer"><a href="/profile">Back to Profile</a></button>
+            <h1 class="text-gray-400 text-5xl text-center">Update Post</h1>
+        </div>
+        <div class="formdiv mt-10">
+            <form action="/update/<%= post._id %>" method="post" class="space-y-4">
+                <textarea name="detail" class="txtarea block bg-white-900 w-1/2 px-4 py-3 mx-auto rounded-lg text-xl font-bold resize-none h-36"><%= post.details %></textarea>
+                <div class="flex justify-center">
+                    <button type="submit" class="btn p-2 rounded-lg font-bold text-lg bg-green-500 text-gray-200 cursor-pointer mx-auto">Update Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html> 

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    
+    <div class="main w-full h-screen bg-zinc-900 overflow-x-hidden">
+        <div class="inline-block w-full m-2">
+            <button class="btn p-2 rounded-lg font-bold text-lg bg-red-700 text-gray-200 float-right mr-4 cursor-pointer"><a href="/logout">Logout...</a></button>
+        <h1 class="text-gray-400 text-5xl  text-center">Profile...</h1>
+        </div>
+        <div class="formdiv">
+            <h1 class="text-gray-400 pl-4 pb-1 text-lg">Create New Post.... </h1>
+            <form action="/create" method="post" class="space-y-4">
+                
+                <textarea placeholder="Write Your posts here..." name="detail" class="txtarea block bg-white-900 w-1/4 px-4 py-3 mx-4 rounded-lg text-xl font-bold resize-none"></textarea>
+                <button type="submit" class="btn p-2 rounded-lg font-bold text-lg bg-blue-400 text-gray-200 ml-4 cursor-pointer">Create Task</button>
+            </form>
+        </div>
+        <hr class="my-5">
+        <div>
+            <div>
+                <% if(user.post.length > 0 ){%>
+                 <h1 class="text-gray-400 text-3xl text-center">Your Posts...</h1>
+                 <% user.post.forEach((val)=>{%>
+                    <div class="post-ctn w-full">
+                        <div class="posts w-2/4 p-2 m-4 border-2 border-gray-500">
+                            <h1 class="text-white text-lg p-1">@<%=user.username%></h1>
+                            <p class="text-white"><%= val.details%></p>
+                            <div class="flex mt-3 justify-end">
+                                <!-- Update Button/Form -->
+                                <form action="/update/<%= val._id %>" method="get" class="mr-2">
+                                    <button type="submit" class="btn p-2 rounded-lg font-bold text-sm bg-yellow-500 text-gray-200 cursor-pointer">Update</button>
+                                </form>
+                                <!-- Delete Button/Form -->
+                                <form action="/delete/<%= val._id %>" method="post">
+                                    <button type="submit" class="btn p-2 rounded-lg font-bold text-sm bg-red-600 text-gray-200 cursor-pointer">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                     <% })%>
+                 <% } else{  %>
+                    <h1 class="text-gray-400 text-3xl text-center">No Posts...</h1>
+                    <% } %>
+             </div>  
+         </div>
+
+           
+        </div>
+    </div>
+
+    
+</body>
+</html>
