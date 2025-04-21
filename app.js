@@ -32,7 +32,7 @@ app.post('/login', async (req , res)=>{
     if(!user){ res.status(500).send('kuch to gadbad hai')}
     bcrypt.compare(password,user.password ,(err,result)=>{
         if(result){
-            const token = jwt.sign({email:user.email , id:user._id} , 'gugugaga')
+            const token = jwt.sign({email:user.email , id:user._id} , 'secret')
             res.cookie('token',token)
             res.redirect('/profile')
         }
@@ -53,7 +53,7 @@ app.post('/createuser',async(req,res)=>{
                 email,
                 password:hash
             })
-           const token = jwt.sign( {email:email,userId:user._id} , 'gugugaga')
+           const token = jwt.sign( {email:email,userId:user._id} , 'secret')
            res.cookie('token',token)
            res.redirect('/login')
         })
@@ -137,7 +137,7 @@ function isLoggedin(req , res , next){
         res.redirect('/login')
     }
     else{
-        const decoded = jwt.verify(req.cookies.token , 'gugugaga')
+        const decoded = jwt.verify(req.cookies.token , 'secret')
         req.user = decoded 
     }
     next()
